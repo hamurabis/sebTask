@@ -6,7 +6,7 @@ mvn clean install
 
 mvn tomcat7:run
 
-## Run REST unit tests only on local app on 8080 port
+## Run REST unit tests only on local app on 8090 port
 
 mvn clean install
 
