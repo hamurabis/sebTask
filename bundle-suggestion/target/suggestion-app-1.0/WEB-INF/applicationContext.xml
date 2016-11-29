@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.1.xsd
+	http://www.springframework.org/schema/mvc 
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	
+	<bean id="suggestionService" class="bundle.suggestion.service.BundleServiceImpl">
+		<property name="bundlesMap">
+			<map>
+				<entry key="Junior Saver" value-ref="juniorSaverBundle" />
+				<entry key="Student" value-ref="studentBundle" />
+				<entry key="Classic" value-ref="classicBundle" />
+				<entry key="Classic Plus" value-ref="classicPlusBundle" />
+				<entry key="Gold" value-ref="goldBundle" />
+			</map>
+		</property>
+		<property name="productsMap">
+			<map>
+				<entry key="Current Account" value-ref="currentAccount" />
+				<entry key="Current Account Plus" value-ref="currentAccountPlus" />
+				<entry key="Junior Saver Account" value-ref="juniorSaverAccount" />
+				<entry key="Student Account" value-ref="studentAccount" />
+				<entry key="Debit Card" value-ref="debitCard" />
+				<entry key="Credit Card" value-ref="creditCard" />
+				<entry key="Gold Credit Card" value-ref="goldCreditCard" />
+			</map>
+		</property>
+	</bean>
+	
+	<!-- Bundles -->
+	<bean id="juniorSaverBundle" class="bundle.suggestion.bundle.Bundle">
+		<property name="bundleName" value="Junior Saver" />
+		<property name="ratingValue" value="0" />
+		<property name="products">
+			<list value-type="bundle.suggestion.products.Product">
+				<ref bean="juniorSaverAccount"/>
+			</list>
+		</property>
+		<property name="rules">
+			<list value-type="bundle.suggestion.rules.Rule">
+				<ref bean="ruleAgeUpTo18"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="studentBundle" class="bundle.suggestion.bundle.Bundle">
+		<property name="bundleName" value="Student" />
+		<property name="ratingValue" value="0" />
+		<property name="products">
+			<list value-type="bundle.suggestion.products.Product">
+				<ref bean="studentAccount"/>
+				<ref bean="debitCard"/>
+				<ref bean="creditCard"/>
+			</list>
+		</property>
+		<property name="rules">
+			<list value-type="bundle.suggestion.rules.Rule">
+				<ref bean="ruleAgeFrom17"/>
+				<ref bean="ruleMustBeStudent"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="classicBundle" class="bundle.suggestion.bundle.Bundle">
+		<property name="bundleName" value="Classic" />
+		<property name="ratingValue" value="1" />
+		<property name="products">
+			<list value-type="bundle.suggestion.products.Product">
+				<ref bean="currentAccount"/>
+				<ref bean="debitCard"/>
+			</list>
+		</property>
+		<property name="rules">
+			<list value-type="bundle.suggestion.rules.Rule">
+				<ref bean="ruleAgeFrom17"/>
+				<ref bean="ruleIncomeFrom0"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="classicPlusBundle" class="bundle.suggestion.bundle.Bundle">
+		<property name="bundleName" value="Classic Plus" />
+		<property name="ratingValue" value="2" />
+		<property name="products">
+			<list value-type="bundle.suggestion.products.Product">
+				<ref bean="currentAccount"/>
+				<ref bean="debitCard"/>
+				<ref bean="creditCard"/>
+			</list>
+		</property>
+		<property name="rules">
+			<list value-type="bundle.suggestion.rules.Rule">
+				<ref bean="ruleAgeFrom17"/>
+				<ref bean="ruleIncomeFrom12000"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="goldBundle" class="bundle.suggestion.bundle.Bundle">
+		<property name="bundleName" value="Gold" />
+		<property name="ratingValue" value="3" />
+		<property name="products">
+			<list value-type="bundle.suggestion.products.Product">
+				<ref bean="currentAccountPlus"/>
+				<ref bean="debitCard"/>
+				<ref bean="goldCreditCard"/>
+			</list>
+		</property>
+		<property name="rules">
+			<list value-type="bundle.suggestion.rules.Rule">
+				<ref bean="ruleAgeFrom17"/>
+				<ref bean="ruleIncomeFrom40000"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Products -->
+	<bean id="currentAccount" class="bundle.suggestion.products.Product">
+		<property name="name" value="Current Account" />
+		<property name="rules">
+			<list value-type="bundle.suggestion.rules.Rule">
+				<ref bean="ruleAgeFrom17"/>
+				<ref bean="ruleIncomeFrom0"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="currentAccountPlus" class="bundle.suggestion.products.Product">
+		<property name="name" value="Current Account Plus" />
+		<property name="rules">
+			<list value-type="bundle.suggestion.rules.Rule">
+				<ref bean="ruleAgeFrom17"/>
+				<ref bean="ruleIncomeFrom40000"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="juniorSaverAccount" class="bundle.suggestion.products.Product">
+		<property name="name" value="Junior Saver Account" />
+		<property name="rules">
+			<list value-type="bundle.suggestion.rules.Rule">
+				<ref bean="ruleAgeUpTo18"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="studentAccount" class="bundle.suggestion.products.Product">
+		<property name="name" value="Student Account" />
+		<property name="rules">
+			<list value-type="bundle.suggestion.rules.Rule">
+				<ref bean="ruleAgeFrom17"/>
+				<ref bean="ruleMustBeStudent"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="debitCard" class="bundle.suggestion.products.Product">
+		<property name="name" value="Debit Card" />
+		<property name="rules">
+			<list value-type="bundle.suggestion.rules.Rule">
+				<ref bean="ruleAtLeastMultipleProducts"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="creditCard" class="bundle.suggestion.products.Product">
+		<property name="name" value="Credit Card" />
+		<property name="rules">
+			<list value-type="bundle.suggestion.rules.Rule">
+				<ref bean="ruleAgeFrom17"/>
+				<ref bean="ruleIncomeFrom12000"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="goldCreditCard" class="bundle.suggestion.products.Product">
+		<property name="name" value="Gold Credit Card" />
+		<property name="rules">
+			<list value-type="bundle.suggestion.rules.Rule">
+				<ref bean="ruleAgeFrom17"/>
+				<ref bean="ruleIncomeFrom40000"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Rules -->
+	<bean id="ruleAgeUpTo18" class="bundle.suggestion.rules.MaximumAgeRule">
+		<property name="maximumAge" value="18" />
+		<property name="message" value="Customer age must less than 18 years old" />
+	</bean>
+	<bean id="ruleAgeFrom17" class="bundle.suggestion.rules.MinimumAgeRule">
+		<property name="minimumAge" value="17" />
+		<property name="message" value="Customer age must be more than 17 years old" />
+	</bean>
+	<bean id="ruleMustBeStudent" class="bundle.suggestion.rules.StudentRule">
+		<property name="student" value="true" />
+		<property name="message" value="Customer must be student" />
+	</bean>
+	<bean id="ruleIncomeFrom0" class="bundle.suggestion.rules.MinimumIncomeRule">
+		<property name="minimumIncome" value="0" />
+		<property name="message" value="Customer income should be more than 0" />
+	</bean>
+	<bean id="ruleIncomeFrom40000" class="bundle.suggestion.rules.MinimumIncomeRule">
+		<property name="minimumIncome" value="40000" />
+		<property name="message" value="Customer income should be than 40000" />
+	</bean>
+	<bean id="ruleIncomeFrom12000" class="bundle.suggestion.rules.MinimumIncomeRule">
+		<property name="minimumIncome" value="12000" />
+		<property name="message" value="Customer income should be than 12000" />
+	</bean>
+	<bean id="ruleAtLeastMultipleProducts" class="bundle.suggestion.rules.ProductInRangeRule">
+		<property name="atLeastOneProduct">
+			<list value-type="bundle.suggestion.products.Product">
+				<ref bean="currentAccount"/>
+				<ref bean="currentAccountPlus"/>
+				<ref bean="studentAccount"/>
+			</list>
+		</property>
+		<property name="message" value="Product should be one of Current Account, Current Account Plus, Student Account" />
+	</bean>
+
+
+</beans>

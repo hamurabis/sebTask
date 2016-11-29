@@ -1,0 +1,15 @@
+bundle\suggestion\rules\ProductInRangeRule.class
+bundle\suggestion\rules\AbstractRule.class
+bundle\suggestion\rules\MaximumAgeRule.class
+bundle\suggestion\rest\SuggestionRestService.class
+bundle\suggestion\customer\Customer.class
+bundle\suggestion\rest\SuggestionStatus.class
+bundle\suggestion\rules\MinimumAgeRule.class
+bundle\suggestion\rules\StudentRule.class
+bundle\suggestion\bundle\CustomBundle.class
+bundle\suggestion\bundle\Bundle.class
+bundle\suggestion\service\BundleServiceImpl.class
+bundle\suggestion\products\Product.class
+bundle\suggestion\rules\Rule.class
+bundle\suggestion\service\BundleService.class
+bundle\suggestion\rules\MinimumIncomeRule.class

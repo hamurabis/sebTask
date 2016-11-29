@@ -1,0 +1,1 @@
+mvn clean install tomcat7:run -DMAVEN_OPTS=’-Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=1444'

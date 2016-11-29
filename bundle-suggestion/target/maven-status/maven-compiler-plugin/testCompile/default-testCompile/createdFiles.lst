@@ -1,0 +1,7 @@
+budnle\suggestion\rules\MinimumAgeRuleTest.class
+budnle\suggestion\rules\ProductInRangeRuleTest.class
+budnle\suggestion\rules\StudentRuleTest.class
+bundle\suggestion\products\ProductTest.class
+budnle\suggestion\rules\MaximumAgeRuleTest.class
+budnle\suggestion\rules\MinimumIncomeRuleTest.class
+bundle\suggestion\service\BundleServiceImplTest.class
