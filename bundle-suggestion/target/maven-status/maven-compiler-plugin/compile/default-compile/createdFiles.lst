@@ -2,6 +2,7 @@ bundle\suggestion\rules\ProductInRangeRule.class
 bundle\suggestion\rules\AbstractRule.class
 bundle\suggestion\rules\MaximumAgeRule.class
 bundle\suggestion\rest\SuggestionRestService.class
+bundle\suggestion\rules\AtLeastOneAccountRule.class
 bundle\suggestion\customer\Customer.class
 bundle\suggestion\rest\SuggestionStatus.class
 bundle\suggestion\rules\MinimumAgeRule.class

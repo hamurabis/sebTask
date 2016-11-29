@@ -45,6 +45,7 @@
 		<property name="rules">
 			<list value-type="bundle.suggestion.rules.Rule">
 				<ref bean="ruleAgeUpTo18"/>
+				<ref bean="atLeastOneAccountRule" />
 			</list>
 		</property>
 	</bean>
@@ -62,6 +63,7 @@
 			<list value-type="bundle.suggestion.rules.Rule">
 				<ref bean="ruleAgeFrom17"/>
 				<ref bean="ruleMustBeStudent"/>
+				<ref bean="atLeastOneAccountRule" />
 			</list>
 		</property>
 	</bean>
@@ -78,6 +80,7 @@
 			<list value-type="bundle.suggestion.rules.Rule">
 				<ref bean="ruleAgeFrom17"/>
 				<ref bean="ruleIncomeFrom0"/>
+				<ref bean="atLeastOneAccountRule" />
 			</list>
 		</property>
 	</bean>
@@ -95,6 +98,7 @@
 			<list value-type="bundle.suggestion.rules.Rule">
 				<ref bean="ruleAgeFrom17"/>
 				<ref bean="ruleIncomeFrom12000"/>
+				<ref bean="atLeastOneAccountRule" />
 			</list>
 		</property>
 	</bean>
@@ -112,6 +116,7 @@
 			<list value-type="bundle.suggestion.rules.Rule">
 				<ref bean="ruleAgeFrom17"/>
 				<ref bean="ruleIncomeFrom40000"/>
+				<ref bean="atLeastOneAccountRule" />
 			</list>
 		</property>
 	</bean>
@@ -125,6 +130,7 @@
 				<ref bean="ruleIncomeFrom0"/>
 			</list>
 		</property>
+		<property name="account" value="true" />
 	</bean>
 	<bean id="currentAccountPlus" class="bundle.suggestion.products.Product">
 		<property name="name" value="Current Account Plus" />
@@ -134,6 +140,7 @@
 				<ref bean="ruleIncomeFrom40000"/>
 			</list>
 		</property>
+		<property name="account" value="true" />
 	</bean>
 	<bean id="juniorSaverAccount" class="bundle.suggestion.products.Product">
 		<property name="name" value="Junior Saver Account" />
@@ -142,6 +149,7 @@
 				<ref bean="ruleAgeUpTo18"/>
 			</list>
 		</property>
+		<property name="account" value="true" />
 	</bean>
 	<bean id="studentAccount" class="bundle.suggestion.products.Product">
 		<property name="name" value="Student Account" />
@@ -151,6 +159,7 @@
 				<ref bean="ruleMustBeStudent"/>
 			</list>
 		</property>
+		<property name="account" value="true" />
 	</bean>
 	<bean id="debitCard" class="bundle.suggestion.products.Product">
 		<property name="name" value="Debit Card" />
@@ -159,6 +168,7 @@
 				<ref bean="ruleAtLeastMultipleProducts"/>
 			</list>
 		</property>
+		<property name="account" value="false" />
 	</bean>
 	<bean id="creditCard" class="bundle.suggestion.products.Product">
 		<property name="name" value="Credit Card" />
@@ -168,6 +178,7 @@
 				<ref bean="ruleIncomeFrom12000"/>
 			</list>
 		</property>
+		<property name="account" value="false" />
 	</bean>
 	<bean id="goldCreditCard" class="bundle.suggestion.products.Product">
 		<property name="name" value="Gold Credit Card" />
@@ -177,6 +188,7 @@
 				<ref bean="ruleIncomeFrom40000"/>
 			</list>
 		</property>
+		<property name="account" value="false" />
 	</bean>
 	
 	<!-- Rules -->
@@ -213,6 +225,9 @@
 			</list>
 		</property>
 		<property name="message" value="Product should be one of Current Account, Current Account Plus, Student Account" />
+	</bean>
+	<bean id="atLeastOneAccountRule" class="bundle.suggestion.rules.AtLeastOneAccountRule">
+        <property name="message" value="Cannot be more than 1 accounts" />
 	</bean>
 
 

@@ -5,7 +5,7 @@ import java.util.List;
 import bundle.suggestion.products.Product;
 
 /**
- * Rule for validating if product in required products colleciton
+ * Rule for validating if product in required products collection
  * 
  * @author MG
  *
@@ -18,13 +18,18 @@ public class ProductInRangeRule extends AbstractRule{
 	private List<Product> atLeastOneProduct;
 
 	/**
-	 * Validates product by checking if its in atLeastOneProduct colelction
+	 * Validates product by checking if its in atLeastOneProduct collection
 	 */
-	public boolean validate(Product product) {
-		if (atLeastOneProduct == null || product == null) {
-			return true;
-		}
-		return atLeastOneProduct.contains(product);
+	public boolean validate(List<Product> products) {
+	    if (atLeastOneProduct == null || products == null) {
+            return true;
+        }
+	    for (Product product : products) {
+	        if (atLeastOneProduct.contains(product)) {
+	            return true;
+	        }
+	    }
+		return false;
 	}
 
 	public List<Product> getAtLeastOneProduct() {

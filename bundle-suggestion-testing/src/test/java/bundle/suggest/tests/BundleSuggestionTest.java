@@ -22,7 +22,7 @@ public class BundleSuggestionTest {
 	@Test
 	public void shouldSuggestBundle() throws IOException, ParseException {
 		//given
-		URL url = new URL("http://localhost:8080/bundle-suggestion/services/suggest?age=10&income=0&isStudent=true");
+		URL url = new URL("http://localhost:8090/bundle-suggestion/services/suggest?age=10&income=0&isStudent=true");
 	    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("GET");
 		conn.setRequestProperty("Accept", "application/json");
@@ -42,24 +42,22 @@ public class BundleSuggestionTest {
 		parser.parse(str);
 		JSONObject jsonObject = (JSONObject) parser.parse(str);
 		
-		
 		// then
 		String bundleName = (String) jsonObject.get("bundleName");
 		
-		assertThat(bundleName, equalTo("Classic"));
+		assertThat(bundleName, equalTo("Junior Saver"));
 	}
 	
 	@Test
 	public void shouldCustomizeBundle() throws IOException, ParseException {
 		//given
-		URL url = new URL("http://localhost:8080/bundle-suggestion/services/custom?age=20&income=50000&isStudent=true");
+		URL url = new URL("http://localhost:8090/bundle-suggestion/services/custom?age=20&income=50000&isStudent=true");
 	    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("POST");
 		conn.setDoOutput(true);
 		conn.setDoInput(true);
 		conn.setUseCaches(false);
 		conn.setRequestProperty( "Content-Type", "application/json" );
-		conn.setRequestProperty("Accept", "application/json");
 		conn.connect();
 		JSONObject parameter = new JSONObject();
 		parameter.put("bundleName", "Classic");
@@ -68,7 +66,7 @@ public class BundleSuggestionTest {
 		parameter.put("productsToAdd", productToAddd);
 		JSONArray productToRemove = new JSONArray();
 		productToRemove.add("Debit Card");
-		parameter.put("productsToRemove", productToAddd);
+		parameter.put("productsToRemove", productToRemove);
         OutputStream os = conn.getOutputStream();
         OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");
         osw.write(parameter.toString());

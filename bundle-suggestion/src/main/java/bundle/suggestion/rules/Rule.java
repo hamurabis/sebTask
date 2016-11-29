@@ -1,5 +1,7 @@
 package bundle.suggestion.rules;
 
+import java.util.List;
+
 import bundle.suggestion.customer.Customer;
 import bundle.suggestion.products.Product;
 
@@ -25,7 +27,7 @@ public interface Rule {
 	 * @param product to validate
 	 * @return <code>true</code> if product is acceptable, <code>false</code> otherwise
 	 */
-	public boolean validate(Product product);
+	public boolean validate(List<Product> products);
 	
 	/**
 	 * @return Validation message

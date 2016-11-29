@@ -5,6 +5,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -31,7 +32,7 @@ public class ProductInRangeRuleTest {
 		rule.getAtLeastOneProduct().add(product);
 		
 		// when
-		assertThat(rule.validate(product), equalTo(true));
+		assertThat(rule.validate(rule.getAtLeastOneProduct()), equalTo(true));
 	}
 	
 	@Test
@@ -44,9 +45,11 @@ public class ProductInRangeRuleTest {
 		rule.getAtLeastOneProduct().add(product);
 		Product product2 = new Product();
 		product.setName("TestName2");
+		List<Product> products = new ArrayList<Product>();
+		products.add(product2);
 		
 		// when
-		assertThat(rule.validate(product2), equalTo(false));
+		assertThat(rule.validate(products), equalTo(false));
 	}
 
 }

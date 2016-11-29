@@ -56,20 +56,12 @@ public class BundleServiceImpl implements BundleService{
 	 */
 	protected SuggestionStatus validateProducts(Customer customer, List<Product> products) {
 		SuggestionStatus status = new SuggestionStatus();
-		int accountCount = 0;
 		for (Product product : products) {
 			for (Rule rule : product.getRules()) {
-				if (!rule.validate(customer) || !rule.validate(product)) {
+				if (!rule.validate(customer) || !rule.validate(products)) {
 					status.getErrors().add(rule.getMessage());
 				}
-				if (product.isAccount()) {
-					accountCount++;
-				}
 			}
-		}
-		if (accountCount > 1) {
-			// TODO move to rules
-			status.getErrors().add("Cannot be more than 1 accounts");
 		}
 		return status;
 	}
@@ -82,7 +74,7 @@ public class BundleServiceImpl implements BundleService{
 	protected SuggestionStatus validateBundle(Customer customer, Bundle bundle) {
 		SuggestionStatus status = new SuggestionStatus();
 		for (Rule rule : bundle.getRules()) {
-			if (!rule.validate(customer)) {
+			if (!rule.validate(customer) || !rule.validate(bundle.getProducts())) {
 				status.getErrors().add(rule.getMessage());
 			}
 		}

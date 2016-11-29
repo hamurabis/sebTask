@@ -1,5 +1,7 @@
 package bundle.suggestion.rules;
 
+import java.util.List;
+
 import bundle.suggestion.customer.Customer;
 import bundle.suggestion.products.Product;
 
@@ -30,7 +32,7 @@ public abstract class AbstractRule implements Rule{
 	 * 
 	 * @return always return <code>true</code>
 	 */
-	public boolean validate(Product product) {
+	public boolean validate(List<Product> products) {
 		return true;
 	}
 
